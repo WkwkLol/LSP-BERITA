@@ -1,25 +1,33 @@
 <?php include '../config/koneksi.php'; ?>
 
-<form method="POST">
-    Judul: <input type="text" name="judul"><br>
-    Isi: <textarea name="isi"></textarea><br>
+<head>
+    <link rel="stylesheet" type="text/css" href="../assets/index.css">
+</head>
+<body>
 
-    <select name="kategori">
-        <?php
-        $kat = mysqli_query($conn, "SELECT * FROM kategori");
-        while ($k = mysqli_fetch_assoc($kat)) {
-            echo "<option value='{$k['id']}'>{$k['nama_kategori']}</option>";
-        }
-        ?>
-    </select>
+    <form method="POST">
+        <h2 class="putih">Judul Berita: </h2>
+        <input type="text" name="judul"></input>
+        <h2 class="putih">Isi Berita:</h2>
+        <textarea name="isi"></textarea><br><br>
 
-    <button name="simpan">Simpan</button>
-</form>
+        <select name="kategori">
+            <?php
+            $kat = mysqli_query($conn, "SELECT * FROM kategori");
+            while ($k = mysqli_fetch_assoc($kat)) {
+                echo "<option value='{$k['id']}'>{$k['nama_kategori']}</option>";
+            }
+            ?>
+        </select>
 
-<?php
-if (isset($_POST['simpan'])) {
-    mysqli_query($conn, "INSERT INTO berita VALUES('', '$_POST[judul]', '$_POST[isi]', '$_POST[kategori]', NOW())");
+        <button class="button" name="simpan">Simpan</button> <a class="button" href="dashboard.php">Kembali</a><br><br>
+    </form>
 
-    header("Location: berita.php");
-}
-?>
+    <?php
+    if (isset($_POST['simpan'])) {
+        mysqli_query($conn, "INSERT INTO berita (judul, isi, kategori_id, tanggal) VALUES('$_POST[judul]', '$_POST[isi]', '$_POST[kategori]', NOW())");
+
+        header("Location: berita.php");
+    }
+    ?>
+</body>

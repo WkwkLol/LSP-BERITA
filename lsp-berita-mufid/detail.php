@@ -5,6 +5,11 @@ $id = $_GET['id'];
 $data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM berita WHERE id=$id"));
 ?>
 
-<h2><?= $data['judul'] ?></h2>
-<p><?= $data['isi'] ?></p>
-<a href="index.php">Kembali</a>
+<head>
+    <link rel="stylesheet" type="text/css" href="../assets/index.css">
+</head>
+<body>
+    <h1 class="putih"><?= $data['judul'] ?></h1><hr>
+    <p class="putih"><?= $data['isi'] ?></p>
+    <a class="button" href="index.php">Kembali</a>
+</body>

@@ -1,18 +1,24 @@
 <?php include 'config/koneksi.php'; ?>
 
-<h1>Website Berita</h1>
+<head>
+    <link rel="stylesheet" type="text/css" href="assets/index.css">
+</head>
+<body>
+    <a href="admin/dashboard.php" class="button">Login Admin</a>
 
-<a href='admin/dashboard.php'id']."'>Login</a> <br>
-<a href='admin/kategori.php'id']."'>Tambah Kategori</a>
+    <h1 class="putih">Radar News</h1>
 
-<?php
-$query = mysqli_query($conn, "SELECT * FROM berita");
+    <?php
+    $query = mysqli_query($conn, "SELECT * FROM berita");
 
-while ($row = mysqli_fetch_array($query)) {
-    ?>
-    <h3><?=  $row['judul'] ?></h3>
-    <p><?=  substr($row['isi'], 0, 100) ?>...</p>
-    <a href="detail.php?id=<?= $row['id'] ?>">Baca</a>
-    <hr>
-<?php } ?>
+    while ($row = mysqli_fetch_array($query)) {
+        ?>
+        <hr>
+        <h3 class="putih"><?= $row['judul'] ?></h3>
+        <p class="putih"><?= substr($row['isi'], 0, 100) ?>...</p>
+        <a href="detail.php?id=<?= $row['id'] ?>" class="button">Baca</a>
+    <?php } ?>
+</body>
+
+
 
